@@ -41,10 +41,11 @@ pipeline {
             }
         }
 
-        stage('Test Docker Container') {  // Run tests inside the Docker container (optional)
+        stage('Test Docker Container') {  // Run tests inside the Docker container
             steps {
                 script {
-                    sh 'docker run --rm ${IMAGE_NAME}:${BUILD_NUMBER} python3 calculator.py'
+                    // Pass operation and numbers as command-line arguments
+                    sh 'docker run --rm ${IMAGE_NAME}:${BUILD_NUMBER} python3 calculator.py 1 10 5'
                 }
             }
         }
